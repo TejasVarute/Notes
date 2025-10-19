@@ -11,7 +11,7 @@
 ## Steps to install Django
 
 - pip install django
-- pip install django-rest
+- pip install djangorestframework
 - pip install pillow
 
 ## Setup django project
