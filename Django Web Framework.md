@@ -10,9 +10,9 @@
 
 ## Steps to install Django
 
-- pip install django
-- pip install djangorestframework
-- pip install pillow
+- `pip install django`
+- `pip install djangorestframework`
+- `pip install pillow`
 
 ## Setup django project
 
@@ -25,15 +25,15 @@
 
 ## Project Directory
 
-```
-|-- App1
-|-- App2
-|-- templates
-|-- static
-|-- media
-|-- project
-|-- manage.py
-|-- sqlite.db
+```apache
+  |-- App1/
+  |-- App2/
+  |-- templates/
+  |-- static/
+  |-- media/
+  |-- project/
+  |-- manage.py
+  |-- sqlite.db
 ```
 
 ## GET and POST method
@@ -43,73 +43,79 @@
 - POST Method requires CSFR token.
 - POST Method do not show attributes in url box.
 
+---
+
 ## Essential changes
 
-1. ### Setup the templates folder
+### 1. Setup the templates folder
 
-    - Create `templates` folder inside the project directory
-    - In `project_directory/settings.py` file, add `'DIRS' : [os.path.join(BASE_DIR, 'templates')],` inside the `TEMPLATES` list
+- Create `templates` folder inside the project directory
+- In `project_directory/settings.py` file, add `'DIRS' : [os.path.join(BASE_DIR, 'templates')],` inside the `TEMPLATES` list
 
-2. ### Setup the static folder
+### 2. Setup the static folder
 
-    - Create `static` folder inside the project directory
-    - In `project_directory/settings.py` file, add `'STATICFILES_DIRS' : [os.path.join(BASE_DIR, 'static')],` next line to `STATIC_URL = '/static/'`
+- Create `static` folder inside the project directory
+- In `project_directory/settings.py` file, add `'STATICFILES_DIRS' : [os.path.join(BASE_DIR, 'static')],` next line to `STATIC_URL = '/static/'`
 
-3. ### Connect APPs with Project
+### 3. Connect APPs with Project
 
-    - Add `APP_Name` inside the `INSTALLED_APPS` list
+- Add `APP_Name` inside the `INSTALLED_APPS` list
 
-4. ### Setup urls
+### 4. Setup urls
 
-    - Import `path` and `include` from `django.urls`
-    - Add `APP.urls` in `urlpatterns` list
-    ```
-        from django.urls import path, include
+- Import `path` and `include` from `django.urls`
+- Add `APP.urls` in `urlpatterns` list
 
-        urlpatterns = [
-            path("", include("APP_NAME.urls")),
-        ]
-    ```
+```python
+    from django.urls import path, include
 
-5. ###  Setup urls in APP
+    urlpatterns = [
+        path("", include("APP_NAME.urls")),
+    ]
+```
 
-    - Create `urls.py` file inside the APP directory
-    - Import `path` and `views`
-    ```
-        from django.urls import path
-        from . import views
+### 5. Setup urls in APP
 
-        urlpatterns = [
-            path('site_name', views.function_name, name='site-name'),
-        ]
-    ```
+- Create `urls.py` file inside the APP directory
+- Import `path` and `views`
 
-6. ### Setup Views in APP
+```python
+    from django.urls import path
+    from . import views
 
-    - Import `render`, `redirect`, `HttpResponse`
-    - Define function
-    ```
-    from django.shortcuts import render, redirect, HttpResponse
+    urlpatterns = [
+        path('site_name', views.function_name, name='site-name'),
+    ]
+```
 
-    def Home(request):
-        return render(request, 'html_file')
-    ```
+### 6. Setup Views in APP
 
-7. ### Setup Models in APP
+- Import `render`, `redirect`, `HttpResponse`
+- Define function
 
-    - Import `model`
-    - Setup fields as Following Example
-    ```
-    from django.db import models
+  ```python
+  from django.shortcuts import render, redirect, HttpResponse
 
-    class Database(models.Model):
-        char = models.ChartField()
-        text = models.TextField()
-        date = models.DateField()
-        time = models.TimeField()
-        datetime = models.DateTimeField()
-        int = models.IntegerField()
-    ```
+  def Home(request):
+      return render(request, 'html_file')
+  ```
+
+### 7. Setup Models in APP
+
+- Import `model`
+- Setup fields as Following Example
+
+```python
+   from django.db import models
+
+   class Database(models.Model):
+       char = models.ChartField()
+       text = models.TextField()
+       date = models.DateField()
+       time = models.TimeField()
+       datetime = models.DateTimeField()
+       int = models.IntegerField()
+```
 
 ## Create Form
 
@@ -118,36 +124,32 @@
 - Setup form
 - Eg.
 
-```
-from django import forms
+  ```python
+  from django import forms
 
-class Form(forms.Form):
-    char = forms.CharField(label = '', widget=forms.TextInput(attrs = {'class' : ''}))
-    url = forms.URLField(label = '', widget=forms.URLInput(attrs= {'class' : ''}))
-    key = forms.CharField(label='password', widget=forms.PasswordInput(attrs={'class' : ''}))
-```
+  class Form(forms.Form):
+      char = forms.CharField(label = '', widget=forms.TextInput(attrs = {'class' : ''}))
+      url = forms.URLField(label = '', widget=forms.URLInput(attrs= {'class' : ''}))
+      key = forms.CharField(label='password', widget=forms.PasswordInput(attrs={'class' : ''}))
+  ```
 
 ## Create 404 error handle page
 
 - Create `page_not_found` function inside `APP\views.py` file
-
-```
-def page_not_found(request, exception):
-    return render(request, 'page_not_found.html')
-``` 
-
+  ```python
+  def page_not_found(request, exception):
+      return render(request, 'page_not_found.html')
+  ```
 - Add this view in `APP\urls.py` file
-
-```
-urlpatterns = [
-    path('error', views.page_not_found, name="404_handler)
-]
-```
-
+  ```python
+  urlpatterns = [
+      path('error', views.page_not_found, name="404_handler")
+  ]
+  ```
 - Joint this file with `projects_dir\urls.py`
-
-```
-handler404 = 'APP.views.page_not_found'
-```
-
+  ```python
+  handler404 = 'APP.views.page_not_found'
+  ```
 - Restart the server
+
+---

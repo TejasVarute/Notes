@@ -13,6 +13,8 @@
   - Updates the part of a page where it is needed. No full page refresh.
   - Superfast and responsive, even with complex interactions.
 
+---
+
 ## Basics about React
 
 ### Requirements
@@ -25,14 +27,14 @@
 
 1. node --version
 2. npm --version        #npm stands for Node Package Manager
-3. npx --version         #npx stands for Node Package Executable
+3. npx --version        #npx stands for Node Package Executable
 
 ### Basic-App folder structure
 
-``` py
-|- node_modules             # stores third-party modules
-|- public                           # Similar to assets but considered as constant
-|- src                                # Main folder which stores App.js, Index.js and test files
+```apache
+|- node_modules/            # stores third-party modules
+|- public/                   # Similar to assets but considered as constant
+|- src/                     # Main folder which stores App.js, Index.js and test files
 |- packages.json            # App config file
 ```
 
@@ -44,10 +46,10 @@
 
 ### Organize `src` folder structure
 
-``` py
+```apache
 |- components           # Reusable components used in pages/screens
-|- pages/screens       # Contains multiple page
-|- styles                      # The cascades style sheet is stored
+|- pages/screens        # Contains multiple page
+|- styles               # The cascades style sheet is stored
 |- Other necessary
 ```
 
@@ -57,15 +59,15 @@
 
 1. Using `npx` -
 
-``` shell
-> npx create-react-app 'app_name'           
+```shell
+> npx create-react-app 'app_name'       
 > cd 'app_name'
 > npm start
 ```
 
 2. Using `vite` -
 
-``` shell
+```shell
 > npm create vite@letest
 > cd 'app_name'
 > npm install
@@ -74,19 +76,23 @@
 
 ### 2. Installing React Routes
 
-``` shell
+```shell
 > npm i react-rounter-dom
 ```
 
+---
+
 ## Setup the Tailwind with React+Vite
 
-## Create Vite Project
+### Create Vite Project
 
 - `npm create vite@latest [ project-name ]-- --template react`
 - Move inside project folder `cd [ project-name ]`
 - Install tailwind in React
+
   - `npm install tailwindcss @tailwindcss/vite`
 - Configure the vite plugin
+
   - Add the `@tailwindcss/vite` plugin to vite configuration `(vite.config.js)`
 
     ```js
@@ -101,8 +107,9 @@
         ],
         })
     ```
-
 - Add `@import "tailwindcss";` into `index.css` file.
+
+---
 
 ## Things in ReactJS
 
@@ -117,7 +124,7 @@
 - This is used because of react doen't allows siblings.
 - React Fragment are represented as follows.
 
-  ``` js
+  ```js
   function temp () {
     return (
       <>
@@ -132,7 +139,7 @@
 - This helps react to add different HTML elements into the `index.js` file.
 - The following is JSX
 
-  ``` js
+  ```js
   import './assets/style.css'
   const text = () => {
     return (
@@ -145,10 +152,9 @@
 
   export default text
   ```
-
 - The aboves JSX is actually as follows
 
-  ``` js
+  ```js
   import React from 'react'
 
   const h1_element = React.createElement('h1', null, 'Hello World');
@@ -183,7 +189,6 @@
 
     export default message
     ```
-
   - Let we have another child component as `newmessage.jsx` defined as follows
 
     ```js
@@ -197,7 +202,6 @@
 
     export default newmessage
     ```
-
   - Let we have a parent component as `App.jsx` defined as follows
 
     ```js
@@ -282,17 +286,18 @@ export default Child
 - Hooks are special functions in React that allows you to use state and other React features in functional components.
 - Hooks make your code easier to understand and share logic between the components.
 - Built-in Hooks in React
-  
+
   - useState
   - useEffect
   - useContext
   - useReducer
   - useRef
   - useMemo
-  -useCallback
+    -useCallback
   - Custom hooks
 
   #### 1. Use of `useState`
+
 
   - useState is returns two values (current_state_value, function_to_update_value).
   - Eg.
@@ -304,7 +309,7 @@ export default Child
 
   function useStateEg() {
     const [value, setValue] = useState(0)
-    
+
     return (
       <>
         <h1>Value : {value}</h1>
@@ -355,37 +360,37 @@ export default Child
     - Manually change the DOM.
   - Eg.
 
-```js
-Example 1
+  ```js
+  Example 1
 
-import React from 'react'
+  import React from 'react'
 
-const EffectEg = () => {
-  const [randNum, setRandNum] = React.useState(0);
-  
-  const genRandNum = () => {
-    setRandNum(Math.floor(Math.random() * 100));
+  const EffectEg = () => {
+    const [randNum, setRandNum] = React.useState(0);
+
+    const genRandNum = () => {
+      setRandNum(Math.floor(Math.random() * 100));
+    }
+
+    React.useEffect(() => {
+      console.log("useEffect is Triggered);     // This triggers every randNum new value
+
+      return (() => {
+        console.log("Cleanup function is Triggered);  // This triggers every randNum old value get vanished
+      })
+
+    }, [randNum]);
+
+    return (
+      <>
+        <h1>Random Number : {randNum}</h1>
+        <button onClick = {genRandNum}>Gen new randNum</button>
+      </>
+    ) 
   }
 
-  React.useEffect(() => {
-    console.log("useEffect is Triggered);     // This triggers every randNum new value
-    
-    return (() => {
-      console.log("Cleanup function is Triggered);  // This triggers every randNum old value get vanished
-    })
-
-  }, [randNum]);
-
-  return (
-    <>
-      <h1>Random Number : {randNum}</h1>
-      <button onClick = {genRandNum}>Gen new randNum</button>
-    </>
-  ) 
-}
-
-export default EffectEg
-```
+  export default EffectEg
+  ```
 
 #### 3. use of `useMemo`
 
@@ -862,7 +867,7 @@ const applyingcsseg = () => {
     return (
     <>
         <h1>CSS Examples</h1>
-        
+    
         <h1>External CSS Examples</h1> 
         <div className ='container'>
             <h1>This is External CSS Example</h1>
@@ -950,7 +955,7 @@ export default formsEg
 - We have to install React Rounter `rounter-dom` in react as it is not inbuilt with react.
 - To install this we have to run following cmd,
 
-``` shell
+```shell
 npm i react-rounter-dom
 ```
 
@@ -961,7 +966,7 @@ npm i react-rounter-dom
 - To link the pages we need to use Link from `react-rounter-dom`.
 - Eg.
 
-``` shell
+```apache
 // Following pages url as
 localhost:5173/*
 localhost:5173/*/page1
@@ -1006,6 +1011,8 @@ export function Home () {
 ```
 
 ```js
+// App.jsx
+
 import {HashRounter as Router, Routes, Route } from 'react-rounter-dom'
 import { Home } from 'home'
 import { Page1 } from './pages/page1'
@@ -1031,3 +1038,5 @@ function App() {
 
 export default App
 ```
+
+---

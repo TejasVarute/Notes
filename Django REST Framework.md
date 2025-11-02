@@ -1,5 +1,7 @@
 # Django-REST API
 
+---
+
 ## HTTP (Hyper Text Transfer Protocol) methods
 
 - The GET method requests a representation of the specified resource. Requests using GET should only retrieve data.
@@ -22,13 +24,15 @@
 4. Client errors (400 -499)
 5. Server errors (500 -599)
 
+---
+
 ## API (Application Program Interface) -
 
-- An API is a software intermediary that allows two or more applications to talk to each other.
-  - Provider: The compony or developer who provide the API
+- - Provider: The compony or developer who provide the API
   - Comsumer: The compony or person who use the API
 
     ### Types of API -
+
 
     - Private : It can be used within organization.
     - Partner : It can be used within business and business partners.
@@ -46,35 +50,40 @@
     - Application/Database provides required data to API.
     - API return the requests to Client.
 
+---
+
 ## REST API -
 
 - It stands for Representational State Transfer.
 - It is an architecheral design for develop web API.
-- The API which developed using <b>REST</b> is known as <b>REST API/RESTful API</b>.
-
+- The API which developed using **REST** is known as **REST API/RESTful API**.
 - REST API Crud operations:
+
   - POST : Create
   - GET : Read
   - PUT, PATCH : Update : PUT - Complete Update, PATCH - Partial Update
   - DELETE : Delete
 
+---
+
 ## Django REST framework -
 
 - Django REST Framework is a powerful and flexible toolkit for building web APIs.
+
   - The web browsable API is a huge usability win for your developers.
   - Authentication policies including packages for OAuth1 and OAuth2.
   - Serialization that supports ORM and non-ORM data sources.
   - Customizable all the way down - just use regular function-based views if you don't need the more powerful features.
   - Extensive documentation and great community support.
   - Used and trusted by internationally recognized componies including Mozilla, Red Hat, Heroku and Eventbrite.
-
 - Packages:
-  - djangorestframework - REST Framework libraries.
-  - pyYAML, uritemplate - Schema generation support.
-  - Markdown - Markdown support for browsable API.
-  - pygments - Add syntax highlighting to Markdown processing.
-  - django-filter - Filtering support.
-  - django-guardian - Object level permissions support.
+
+  - ***djangorestframework*** - REST Framework libraries.
+  - ***pyYAML***, ***uritemplate*** - Schema generation support.
+  - ***Markdown*** - Markdown support for browsable API.
+  - ***pygments*** - Add syntax highlighting to Markdown processing.
+  - ***django-filter*** - Filtering support.
+  - ***django-guardian*** - Object level permissions support.
 
 ## Django ORM (Object-Relational-Mapper)
 
@@ -82,68 +91,75 @@
 - Eg.
 
   - SQL Query:
-    ```
-        CREATE TABLE customer (
-            ID INT(10), First_Name VARCHAR(20) PRIMARY KEY, 
-            Middle_Name VARCHAR(20) NOT NULL, 
-            Last_Name VARCHAR(20) NOT NULL,
-            Department VARCHAR(20) NOT NULL,
-            Joining_Date DATETIME NOT NULL); 
-    ```
 
+    ```sql
+    CREATE TABLE customer (
+        ID INT(10), First_Name VARCHAR(20) PRIMARY KEY,
+        Middle_Name VARCHAR(20) NOT NULL,
+        Last_Name VARCHAR(20) NOT NULL,
+        Department VARCHAR(20) NOT NULL,
+        Joining_Date DATETIME NOT NULL);
+    ```
   - Django ORM:
-    ```
-        class customer(models.Model):
-            ID = models.IntegerField(max_length=10)
-            First_Name = models.CharField(max_length=20)
-            Middle_Name = models.CharField(max_length=20)
-            Last_Name = models.CharField(max_length=20)
-            Joining_Date = models.DateTimeField()
 
-            def __str__(self):
-                return self.ID
+    ```python
+    class customer(models.Model):
+        ID = models.IntegerField(max_length=10)
+        First_Name = models.CharField(max_length=20)
+        Middle_Name = models.CharField(max_length=20)
+        Last_Name = models.CharField(max_length=20)
+        Joining_Date = models.DateTimeField()
+
+        def __str__(self):
+            return self.ID
     ```
+
+---
 
 ## Django REST Framework
 
-1. ### Connect REST Framework with Django-
+### 1. Connect REST Framework with Django-
 
-    - Add `rest_framework` in `INSTALLED_APPS` list inside the settings.py file.
+- Add `rest_framework` in `INSTALLED_APPS` list inside the settings.py file.
 
-2. ### Serializers -
+### 2. Serializers -
 
-    - Serializers are responsible for converting complex data such querysets and model instance to native Python datatypes (called serialization) that can then easily rendered into JSON or XML or other context types which understandable by Front end.
-    - It also provide Deserialization.
-    - `Serialization` - `Complex DataType` (querysets) to `Python native DataType` (dictionary).
-    - `Render into JSON` - `Python native DataType` (dictionary) to `JSON Data`.
-    - <b>Serializer class</b>:  It gives a powerful, generic way to control the output of your responses, as well as a ModelSerializer class which provides a useful shortcut for creating serializers that deal with model instances and querysets.
-    - Steps to create serializer class
-      - Create a separate `seriealizers.py` file to write all serializers
-      - import serializers from rest_framework `from rest_framework import serializers`
-      - create class inherited with serializer.
-        ```
-        class _Serializer(serializers.Serializer):
-            name = serializers.CharField(max_length = 20)
-            roll = serializers.IntegerField()
-            city = serializers.CharField(max_length = 20)
-        ```
-    - Serialization:
-      - For single tuple:
-        - Query set instance : `obj = Dataset.objects.get(id=1)`
-        - Converting into Dict : `serializer = _Serializer(obj)`
-      - For whole Query Set:
-        - Query set instance : `obj = Dataset.objects.all()`
-        - Converting into Dict : `serializer = _Serializer(obj, many=True)`
-      - Get serialized data: `print(serializer.data)`
+- Serializers are responsible for converting complex data such querysets and model instance to native Python datatypes (called serialization) that can then easily rendered into JSON or XML or other context types which understandable by Front end.
+- It also provide Deserialization.
+- `Serialization` - `Complex DataType` (querysets) to `Python native DataType` (dictionary).
+- `Render into JSON` - `Python native DataType` (dictionary) to `JSON Data`.
+- **Serializer class**: It gives a powerful, generic way to control the output of your responses, as well as a ModelSerializer class which provides a useful shortcut for creating serializers that deal with model instances and querysets.
+- Steps to create serializer class
 
-    - JSON Renderer:
-      - importing JSONRender : `from rest_framework.renderers import JSONRenderer`
-      - Render the Data into Json : `json_data = JSONRenderer().render(serializer.data)`
-    
-    - JSON Response:
-      - Syntax : `JsonResponse(data, encoder=DjangoJSONEncoder, safe=True, json_dumps_params=None, **kwargs)`
-      - An HttpResponse subclass that helps to create a JSON-encoded response. It inherits most behavior from its superclass.
+  - Create a separate `seriealizers.py` file to write all serializers
+  - import serializers from rest_framework `from rest_framework import serializers`
+  - create class inherited with serializer.
+    ```python
+    class _Serializer(serializers.Serializer):
+       name = serializers.CharField(max_length = 20)
+       roll = serializers.IntegerField()
+       city = serializers.CharField(max_length = 20)
+    ```
+- Serialization:
 
-3. ### Viewsets -
+  - For single tuple:
+    - Query set instance : `obj = Dataset.objects.get(id=1)`
+    - Converting into Dict : `serializer = _Serializer(obj)`
+  - For whole Query Set:
+    - Query set instance : `obj = Dataset.objects.all()`
+    - Converting into Dict : `serializer = _Serializer(obj, many=True)`
+  - Get serialized data: `print(serializer.data)`
+- JSON Renderer:
 
-    - Django REST Framework allows you to combine the logic for a set of related views in a single class, called Viewsets.
+  - importing JSONRender : `from rest_framework.renderers import JSONRenderer`
+  - Render the Data into Json : `json_data = JSONRenderer().render(serializer.data)`
+- JSON Response:
+
+  - Syntax : `JsonResponse(data, encoder=DjangoJSONEncoder, safe=True, json_dumps_params=None, **kwargs)`
+  - An HttpResponse subclass that helps to create a JSON-encoded response. It inherits most behavior from its superclass.
+
+### 3. Viewsets -
+
+- Django REST Framework allows you to combine the logic for a set of related views in a single class, called Viewsets.
+
+---
