@@ -4,7 +4,7 @@
 - JWT is a self-contained way to securely transmit data and information between two parties using JSON object.
 - JSON Web Tokens can be trusted because each JWT can be digitally signed, which in return allows the server to know if the JWT has been changed at all.
 - JWT should be used when dealing with authorization.
-- JWT is a greate way for information to be exchanged between the server and client.
+- JWT is a great way for information to be exchanged between the server and client.
 
 ---
 
@@ -22,8 +22,8 @@ aaaaaaaa.bbbbbbbb.cccccccc
 
 ## JWT Header
 
-- JWT Header usually consider of two parts,
-  - **(alg)** The alogrithm for signing
+- JWT Header usually consists of two parts,
+  - **(alg)** The algorithm for signing
   - **"typ"** The specific type of token
 - JWT header is then encoded using Base64 to create the first part of the JWT (a)
 
@@ -38,8 +38,8 @@ aaaaaaaa.bbbbbbbb.cccccccc
 
 ## JWT Signature
 
-- JWT Signature is created by using the alogrithm in the header to hash out the encoded header, encoded payload with a secret.
-- The secret can be anything, but is saved somewhere on the server that the clent does not have access to.
+- JWT Signature is created by using the algorithm in the header to hash out the encoded header, encoded payload with a secret.
+- The secret can be anything, but is saved somewhere on the server that the client does not have access to.
 - The signature is the third and final part of JWT (c).
 
 ## JWT Eg.

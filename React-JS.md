@@ -5,11 +5,12 @@
 - It is a tool for building UI components.
 - `Components` -
 
-  - Components are the building blocks of a React app. Each components is a small piece of code that does one specific thing.
-  - In simple words, Components are the reusable peaces of a website which helps us to manage how the site behaves by user interactions.
+  - Components are the building blocks of a React app. Each component is a small piece of code that does one specific thing.
+  - In simple words, Components are the reusable pieces of a website which helps us to manage how the site behaves based on user interactions.
+
 - `Virtual DOM` -
 
-  - DOM is stands for Document Object Model.
+  - DOM stands for Document Object Model.
   - Updates the part of a page where it is needed. No full page refresh.
   - Superfast and responsive, even with complex interactions.
 
@@ -20,14 +21,14 @@
 ### Requirements
 
 - Node.js
-- npm (include in Node.js)
-- npx (include in Node.js)
+- npm (included in Node.js)
+- npx (included in Node.js)
 
 ### Check the Installations
 
 1. node --version
-2. npm --version        #npm stands for Node Package Manager
-3. npx --version        #npx stands for Node Package Executable
+2. npm --version #npm stands for Node Package Manager
+3. npx --version #npx stands for Node Package Executable
 
 ### Basic-App folder structure
 
@@ -35,21 +36,21 @@
 |- node_modules/            # stores third-party modules
 |- public/                   # Similar to assets but considered as constant
 |- src/                     # Main folder which stores App.js, Index.js and test files
-|- packages.json            # App config file
+|- package.json            # App config file
 ```
 
 - Inside `src` folder
 
   - `index.js` :- This is the Entrypoint file
   - `App.js` :- This is the main functioning file
-  - `App.test.js` :- This is the  Test file for debugging
+  - `App.test.js` :- This is the Test file for debugging
 
 ### Organize `src` folder structure
 
 ```apache
 |- components           # Reusable components used in pages/screens
 |- pages/screens        # Contains multiple page
-|- styles               # The cascades style sheet is stored
+|- styles               # The Cascading Style Sheets are stored
 |- Other necessary
 ```
 
@@ -60,7 +61,7 @@
 1. Using `npx` -
 
 ```shell
-> npx create-react-app 'app_name'       
+> npx create-react-app 'app_name'
 > cd 'app_name'
 > npm start
 ```
@@ -68,7 +69,7 @@
 2. Using `vite` -
 
 ```shell
-> npm create vite@letest
+> npm create vite@latest
 > cd 'app_name'
 > npm install
 > npm run dev
@@ -77,7 +78,7 @@
 ### 2. Installing React Routes
 
 ```shell
-> npm i react-rounter-dom
+> npm i react-router-dom
 ```
 
 ---
@@ -91,22 +92,21 @@
 - Install tailwind in React
 
   - `npm install tailwindcss @tailwindcss/vite`
+
 - Configure the vite plugin
 
   - Add the `@tailwindcss/vite` plugin to vite configuration `(vite.config.js)`
 
     ```js
-        import { defineConfig } from 'vite'
-        import tailwindcss from '@tailwindcss/vite'
-        import react from '@vitejs/plugin-react'
+    import { defineConfig } from "vite";
+    import tailwindcss from "@tailwindcss/vite";
+    import react from "@vitejs/plugin-react";
 
-        export default defineConfig({
-        plugins: [
-            react(),
-            tailwindcss(),
-        ],
-        })
+    export default defineConfig({
+      plugins: [react(), tailwindcss()],
+    });
     ```
+
 - Add `@import "tailwindcss";` into `index.css` file.
 
 ---
@@ -115,27 +115,24 @@
 
 ### 1. React Components
 
-- We have to create a folder named components which contents different components in our project.
+- We have to create a folder named components which contains different components in our project.
 
 ### 2. React Fragment
 
 - This is also called as Parent.
-- The elements inside this are called childrens.
-- This is used because of react doen't allows siblings.
+- The elements inside this are called children.
+- This is used because of react doesn't allow siblings.
 - React Fragment are represented as follows.
 
   ```js
-  function temp () {
-    return (
-      <>
-      </>
-    )
+  function temp() {
+    return <></>;
   }
   ```
 
 ### 3. JSX in React
 
-- The `JSX` is stands for `JavaScript XML`
+- The `JSX` stands for `JavaScript XML`
 - This helps react to add different HTML elements into the `index.js` file.
 - The following is JSX
 
@@ -144,7 +141,7 @@
   const text = () => {
     return (
       <>
-        <!-- In JSX/JavaScript class in a keyword, that why we use ClassName -->
+        <!-- In JSX/JavaScript class is a keyword, that why we use ClassName -->
         <h1 ClassName="h1">Hello World</h1>
       </>
     )
@@ -152,44 +149,40 @@
 
   export default text
   ```
-- The aboves JSX is actually as follows
+
+- The above JSX is actually as follows
 
   ```js
-  import React from 'react'
+  import React from "react";
 
-  const h1_element = React.createElement('h1', null, 'Hello World');
+  const h1_element = React.createElement("h1", null, "Hello World");
 
-  function text () {
-    return (
-      <>
-        {h1_element}
-      </>
-    )
+  function text() {
+    return <>{h1_element}</>;
   }
 
-  export default text
+  export default text;
   ```
 
 ### 4. Props in React
 
 - Props is used to pass data from parent components to child component.
 - This is similar to self in python.
-- Followin is an example of props,
+- Following is an example of props,
 
-  - Let we have a child component as `message.jsx` defined as follows
+  - Suppose we have a child component as `message.jsx` defined as follows
 
     ```js
-    import React from 'react'
+    import React from "react";
 
     const message = (props) => {
-      return (
-        <h2>message = {props.msg}</h2>
-      )
-    }
+      return <h2>message = {props.msg}</h2>;
+    };
 
-    export default message
+    export default message;
     ```
-  - Let we have another child component as `newmessage.jsx` defined as follows
+
+  - Suppose we have another child component as `newmessage.jsx` defined as follows
 
     ```js
     import React as 'react'
@@ -202,14 +195,15 @@
 
     export default newmessage
     ```
-  - Let we have a parent component as `App.jsx` defined as follows
+
+  - Suppose we have a parent component as `App.jsx` defined as follows
 
     ```js
     import React from 'react'
     import Message from './components/message'
     import NewMessage from './components/newmessage'
 
-    funtion App() {
+    function App() {
       <Message msg="Hello"/>
       <NewMessage msg="World"/>
     }
@@ -217,10 +211,10 @@
     export default App
     ```
 
-### 5.  Events in React
+### 5. Events in React
 
 - Events are the actions which happen onto user interface (UI).
-- Eg. Click, Keyboard press, Form Submittion, etc.
+- Eg. Click, Keyboard press, Form Submission, etc.
 - Eg.
 
 ```js
@@ -229,51 +223,47 @@ const eventListener = () => {
     <>
       <button onClick={console.log("Button is Clicked")}>Click Me</button>
     </>
-  )
-}
+  );
+};
 
-export default eventListener
+export default eventListener;
 ```
 
-### 6. Lifiting state up in React
+### 6. Lifting state up in React
 
 - It is exactly opposite to props.
 - Here we pass the data from child component to parent component.
 - Eg.
-- Let we have two components `App.jsx` is parent and `Child.jsx` is child
+- Suppose we have two components `App.jsx` is parent and `Child.jsx` is child
 
 ```js
 // App.jsx
 
-import Child from './components/Child'
+import Child from "./components/Child";
 
-const data = (message)  => {
+const data = (message) => {
   console.log(message);
+};
+
+function App() {
+  return <Child funcvar={data} />;
 }
 
-function App(){
-  return (
-    <Child funcvar = {data} />
-  )
-}
-
-export default App
+export default App;
 ```
 
 ```js
 //Child.jsx
 
-function Child(props){
+function Child(props) {
   const showmessage = () => {
     props.funcvar("Hello World");
-  }
+  };
 
-  return (
-    <button onClick = {showmessage}>click me</button>
-  )
+  return <button onClick={showmessage}>click me</button>;
 }
 
-export default Child
+export default Child;
 ```
 
 ### 7. State in React
@@ -297,7 +287,6 @@ export default Child
   - Custom hooks
 
   #### 1. Use of `useState`
-
 
   - useState is returns two values (current_state_value, function_to_update_value).
   - Eg.
@@ -351,9 +340,9 @@ export default Child
   - Mainly this function is used while working with API.
   - `Side Effect` - Any action that affects somthing outsite the scope of your component can be considered a side effect.
   - It takes two input (function, dependacy_array)
-  - When the components are get mounts on DOM or or when the dependancy triggers the `useEffect` function get triggered.
+  - When the components are get mounts on DOM or or when the dependency triggers the `useEffect` function get triggered.
   - `cleanup` function in `useEffect` it is a function which used at return statement of `useEffect`.
-  - When the components are get unmounts from DOM or when the dependancy state is changed the `cleanup` function is executed.
+  - When the components are get unmounts from DOM or when the dependency state is changed the `cleanup` function is executed.
     - Eg.
     - Fetching data from an API.
     - Subscribing to a data stream
@@ -386,7 +375,7 @@ export default Child
         <h1>Random Number : {randNum}</h1>
         <button onClick = {genRandNum}>Gen new randNum</button>
       </>
-    ) 
+    )
   }
 
   export default EffectEg
@@ -395,50 +384,52 @@ export default Child
 #### 3. use of `useMemo`
 
 - useMemo is a hook that memorizes a value. It remembers the result of a function.
-- Useful from avaid expensive calculations on every render.
-- It take two argument (function, dependancy_array)
+- Useful from avoid expensive calculations on every render.
+- It takes two arguments (function, dependancy_array)
 - Eg.
 
   ```js
-  import {useMemo, useState} from 'react'
+  import { useMemo, useState } from "react";
 
   const useMemoEg = () => {
-      const [count, setCount] = useState(1);
-      const [num, setNum] = useState(1);
+    const [count, setCount] = useState(1);
+    const [num, setNum] = useState(1);
 
-      const increaseCount = () => {
-          setCount(count + 1);
-          if (count % 5 == 0) {
-              setNum(count);
-          }
+    const increaseCount = () => {
+      setCount(count + 1);
+      if (count % 5 == 0) {
+        setNum(count);
       }
+    };
 
-      const sumOfNum = useMemo(() => {
-          let sum = 0;
-          for (let i = 1; i <= num; i++) {
-              sum += i;
-          }
-          return sum;
-      }, [num])
+    const sumOfNum = useMemo(() => {
+      let sum = 0;
+      for (let i = 1; i <= num; i++) {
+        sum += i;
+      }
+      return sum;
+    }, [num]);
 
-      return (
-          <>
-              <h1>Count Value : {count}</h1>
-              <button className="button" onClick={increaseCount}>Increase - Count</button>
-              <h1>Sum Value : {sumOfNum}</h1>
-              <i>The sum is evaluate every 5 count</i>
-          </>
-      )
-  }
+    return (
+      <>
+        <h1>Count Value : {count}</h1>
+        <button className="button" onClick={increaseCount}>
+          Increase - Count
+        </button>
+        <h1>Sum Value : {sumOfNum}</h1>
+        <i>The sum is evaluate every 5 count</i>
+      </>
+    );
+  };
 
-  export default useMemoEg
+  export default useMemoEg;
   ```
 
-#### 4. use of `promps drilling`
+#### 4. use of `prop drilling`
 
 - It is similar as multilevel inheritance.
 - In props we share the data from parent to child.
-- But if we want to shared the data from parent to child 3 by child 1, child 2 and child 3, then we use prop drilling.
+- But if we want to share the data from parent to child 3 by child 1, child 2 and child 3, then we use prop drilling.
 - Eg.
 
   ```js
@@ -494,10 +485,10 @@ export default Child
 
 #### 5. Context API
 
-- This is used to remove complexity in props drilling as we have to pass the props data from parent to child thorugh multiple childs.
+- This is used to remove complexity in props drilling as we have to pass the props data from parent to child through multiple childs.
 - Context API contains `create`, `provider` and `consumer`.
 - Context API's consumer contains a function with single argument.
-- For multiple conext API we have to create multiple providers and multiple consumers.
+- For multiple context API we have to create multiple providers and multiple consumers.
 - Eg.
 
   ```js
@@ -542,7 +533,7 @@ export default Child
   export default ConsumerPage
 
   // App                          - Parent
-  import ConsumerPage from ./Pages/cusomerPage
+  import ConsumerPage from ./Pages/customerPage
   import { createContext } from 'react'
 
   const egContext1 = createContext()
@@ -606,7 +597,7 @@ export default Child
   export default ConsumerPage
 
   // App                          - Parent
-  import ConsumerPage from ./Pages/cusomerPage
+  import ConsumerPage from ./Pages/customerPage
   import { createContext } from 'react'
 
   const egContext1 = createContext()
@@ -633,45 +624,45 @@ export default Child
 
 #### 7. use of `useRef`
 
-- Use to acess and interact with DOM elements directly.
+- Use to access and interact with DOM elements directly.
 - Used to store mutable values that doesn't trigger a component re-render.
 - `useRef` can hold the previous state value.
 - Eg.
 
   ```js
   // Child
-  import { useRef, useState } from 'react'
+  import { useRef, useState } from "react";
 
-  const useRefeg = ()=> {
-    const {name, setName} = useState("");
+  const useRefeg = () => {
+    const { name, setName } = useState("");
     const refElement = useRef("");
     const previousData = useRef("");
 
-    const clearData = ()=> {
+    const clearData = () => {
       setName("");
-      refElement.current.focus()
-    }
+      refElement.current.focus();
+    };
 
-    const updateData =(e)=> {
+    const updateData = (e) => {
       previousData.current = name;
       setName(e.target.value);
-    }
+    };
 
     return (
       <>
-        <label>Enter your name  : </label>
+        <label>Enter your name : </label>
         <input ref={refElement} value={name} onChange={updateData}></input>
         <button onClick={clearData}>- Clear -</button>
         <p>Your previous data : {previousData.current}</p>
       </>
-    )
-  }
+    );
+  };
   ```
 
 #### 8. creating custom hooks
 
 - Unlike pre-defined hooks we can create our custom hooks.
-- It is mendatory to start custom hook name with use keyword, eg-`use'HookName'`
+- It is mandatory to start custom hook name with use keyword, eg-`use'HookName'`
 - Eg.
 
   ```js
@@ -718,60 +709,56 @@ export default Child
 - Eg.
 
 ```js
-import React from 'react'
+import React from "react";
 
 const conditionalRenderingeg = () => {
-    const [isLoggedIn, newLogIn] = React.useState(false)
-    const [status, newStatus] = React.useState(true)
-   
-    return (
-    <>
-        <div className='container'>
-            {(isLoggedIn) ? (
-                <h2>Log In sucessfully</h2>
-             ) : (
-                <h2>Please Log in First</h2>
-            )}
-        </div>
-        <div className='container'>
-            {(status) && (
-                <h2>Status is ok</h2>
-             )}
-        </div>
-    </>
-  )
-}
+  const [isLoggedIn, newLogIn] = React.useState(false);
+  const [status, newStatus] = React.useState(true);
 
-export default conditionalRenderingeg
+  return (
+    <>
+      <div className="container">
+        {isLoggedIn ? (
+          <h2>Log In successfully</h2>
+        ) : (
+          <h2>Please Log in First</h2>
+        )}
+      </div>
+      <div className="container">{status && <h2>Status is ok</h2>}</div>
+    </>
+  );
+};
+
+export default conditionalRenderingeg;
 ```
 
-### 10.  Map function in React
+### 10. Map function in React
 
 - Map function is a powerful higher order function thats operates on a list.
-- This mainly used while interating onto the list of given data.
+- This mainly used while iterating onto the list of given data.
 - Eg.
 
 ```js
-import React from 'react'
+import React from "react";
 
 const mapeg = () => {
-  const clients = ["Ajay", "Aditya", "Omkar", "Raj", "Rahul", "Sharad"]
-  
-    return (
-    <>
-        <h1>Names of our clients : </h1>
-        <div className='container'>
-            <ul>
-                {clients.map((name, i)=>(
-                    <li key={i}>{name}</li>
-                ))}
-            </ul>
-        </div>
-    </>
-  )
-}
+  const clients = ["Ajay", "Aditya", "Omkar", "Raj", "Rahul", "Sharad"];
 
-export default mapeg
+  return (
+    <>
+      <h1>Names of our clients : </h1>
+      <div className="container">
+        <ul>
+          {clients.map((name, i) => (
+            <li key={i}>{name}</li>
+          ))}
+        </ul>
+      </div>
+    </>
+  );
+};
+
+export default mapeg;
 ```
 
 ### 11. Inline CSS in React JS
@@ -780,33 +767,45 @@ export default mapeg
 - Eg.
 
 ```js
-import React from 'react'
+import React from "react";
 
 const applyingcsseg = () => {
-    const style = {
-      container : {
-          backgroundColor : 'gray',
-          color : 'white',
-          borderRadius : "20px"
-      }
-    }
+  const style = {
+    container: {
+      backgroundColor: "gray",
+      color: "white",
+      borderRadius: "20px",
+    },
+  };
 
-    return (
+  return (
     <>
-        <h1>CSS Examples</h1>
-        <h1>inline CSS Examples</h1>
-        <div className='container'>
-            <div style={style.container}>
-                <h1 style={{fontSize : '20px', padding : "5px",}}>This is 1st Example of inline CSS</h1>
-            </div>
-            <h1 style={{fontSize : '20px', color: 'gray', backgroundColor: 'white', borderRadius : "20px", padding: "5px",}}>This is 2nd Example of inline CSS</h1>
+      <h1>CSS Examples</h1>
+      <h1>inline CSS Examples</h1>
+      <div className="container">
+        <div style={style.container}>
+          <h1 style={{ fontSize: "20px", padding: "5px" }}>
+            This is 1st Example of inline CSS
+          </h1>
         </div>
-        <br />  
+        <h1
+          style={{
+            fontSize: "20px",
+            color: "gray",
+            backgroundColor: "white",
+            borderRadius: "20px",
+            padding: "5px",
+          }}
+        >
+          This is 2nd Example of inline CSS
+        </h1>
+      </div>
+      <br />
     </>
-  )
-}
+  );
+};
 
-export default applyingcsseg
+export default applyingcsseg;
 ```
 
 ### 12. Internal CSS in React JS
@@ -814,13 +813,13 @@ export default applyingcsseg
 - Eg.
 
 ```js
-import React from 'react'
+import React from "react";
 
 const applyingcsseg = () => {
   return (
     <>
-        <style>
-            {`
+      <style>
+        {`
                 .container{
                   justify-items: center;
                 }
@@ -838,21 +837,21 @@ const applyingcsseg = () => {
                     text-align: center;
                 }
             `}
-        </style>
+      </style>
 
-        <h1>CSS Examples</h1>
+      <h1>CSS Examples</h1>
 
-        <h1>Internal CSS Examples</h1> 
-        <div className ='container'>
-            <div className='new-container'>
-                <h1>This is Internal CSS Example</h1>
-            </div>
+      <h1>Internal CSS Examples</h1>
+      <div className="container">
+        <div className="new-container">
+          <h1>This is Internal CSS Example</h1>
         </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default applyingcsseg
+export default applyingcsseg;
 ```
 
 ### 13. External CSS in React JS
@@ -860,23 +859,23 @@ export default applyingcsseg
 - Eg.
 
 ```js
-import React from 'react'
-import '../assets/style.css'
+import React from "react";
+import "../assets/style.css";
 
 const applyingcsseg = () => {
-    return (
+  return (
     <>
-        <h1>CSS Examples</h1>
-    
-        <h1>External CSS Examples</h1> 
-        <div className ='container'>
-            <h1>This is External CSS Example</h1>
-        </div>
-    </>
-  )
-}
+      <h1>CSS Examples</h1>
 
-export default applyingcsseg
+      <h1>External CSS Examples</h1>
+      <div className="container">
+        <h1>This is External CSS Example</h1>
+      </div>
+    </>
+  );
+};
+
+export default applyingcsseg;
 ```
 
 ### 14. Loading Images in React JS
@@ -884,18 +883,18 @@ export default applyingcsseg
 - Eg.
 
 ```js
-import Image1 from '../assets/images/430915.jpg'
+import Image1 from "../assets/images/430915.jpg";
 
 const loadImageeg = () => {
   return (
     <>
-        <h1>Loading Image</h1>
-        <img src={Image1} alt="image1" width={500}></img>
+      <h1>Loading Image</h1>
+      <img src={Image1} alt="image1" width={500}></img>
     </>
-  )
-}
+  );
+};
 
-export default loadImageeg
+export default loadImageeg;
 ```
 
 ### 15. Forms in React JS
@@ -903,67 +902,97 @@ export default loadImageeg
 - Eg.
 
 ```js
-import { useState } from 'react'
+import { useState } from "react";
 
 const formsEg = () => {
   // for method 1
-  const [firstName, setFirstName] = useState()
-  const [lastName, setLastName] = useState()
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
 
   // for method 2
   const [formData, setData] = useState({
-    firstName : "",
-    lastName : "",
-  })
+    firstName: "",
+    lastName: "",
+  });
 
-  const updateData = (e)=> {
-      setData({...formData, [e.target.name] : e.target.value})
-  }
+  const updateData = (e) => {
+    setData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   return (
     <>
       <h1>Method 1</h1>
-      <form action=""  onSubmit={(e)=> {e.preventDefault(); console.log("Form Data : ", firstName, lastName)}}>
+      <form
+        action=""
+        onSubmit={(e) => {
+          e.preventDefault();
+          console.log("Form Data : ", firstName, lastName);
+        }}
+      >
         <label>First Name</label>
-        <input type='text' onChange={(e) => setFirstName(e.target.value)} value={firstName}></input>
+        <input
+          type="text"
+          onChange={(e) => setFirstName(e.target.value)}
+          value={firstName}
+        ></input>
         <br />
         <label>Last Name</label>
-        <input type='text' onChange={(e) => setLastName(e.target.value)} value={lastName}></input>
+        <input
+          type="text"
+          onChange={(e) => setLastName(e.target.value)}
+          value={lastName}
+        ></input>
         <br />
         <button type="submit">Submit</button>
       </form>
 
       <h1>Method 2</h1>
-      <form action="" onSubmit={(e)=> {e.preventDefault(); console.log("Form Data : ", formData)}}>
+      <form
+        action=""
+        onSubmit={(e) => {
+          e.preventDefault();
+          console.log("Form Data : ", formData);
+        }}
+      >
         <label>First Name</label>
-        <input type='text' name = "firstName"  onChange={updateData} value={formData.firstName}></input>
+        <input
+          type="text"
+          name="firstName"
+          onChange={updateData}
+          value={formData.firstName}
+        ></input>
         <br />
         <label>Last Name</label>
-        <input type='text' name = "lastName" onChange={updateData} value={formData.lastName}></input>
+        <input
+          type="text"
+          name="lastName"
+          onChange={updateData}
+          value={formData.lastName}
+        ></input>
         <br />
         <button type="submit">Submit</button>
       </form>
     </>
-  )
-}
+  );
+};
 
-export default formsEg
+export default formsEg;
 ```
 
 ### 16. Multiple Pages in React
 
-- We have to install React Rounter `rounter-dom` in react as it is not inbuilt with react.
+- We have to install React Router `router-dom` in react as it is not inbuilt with react.
 - To install this we have to run following cmd,
 
 ```shell
-npm i react-rounter-dom
+npm i react-router-dom
 ```
 
-- Setup rounter at `Page` or `App.jsx`
-- HashRounter is for creating rounting evironments.
+- Setup router at `Page.jsx` or `App.jsx`
+- HashRouter is for creating routing environments.
 - Routes is a components where we specify all the potential router.
-- Route is a component we use for induvidual page.
-- To link the pages we need to use Link from `react-rounter-dom`.
+- Route is a component we use for individual page.
+- To link the pages we need to use Link from `react-router-dom`.
 - Eg.
 
 ```apache
@@ -983,7 +1012,7 @@ import { Outlet } from 'react-router-dom'
 export function Layout() {
   return(
     <>
-      <Nabar />
+      <Navbar />
       <main>
         <Outlet />
       <main/>
@@ -996,9 +1025,9 @@ export function Layout() {
 ```js
 // Navbar.jsx
 
-import { Link } from 'react-rounter-dom'
+import { Link } from "react-router-dom";
 
-export function Home () {
+export function Home() {
   return (
     <>
       <Link to="/">Home</Link>
@@ -1006,37 +1035,36 @@ export function Home () {
       <Link to="/Page2">Page2</Link>
       <Link to="/Page3">Page3</Link>
     </>
-  )
+  );
 }
 ```
 
 ```js
 // App.jsx
 
-import {HashRounter as Router, Routes, Route } from 'react-rounter-dom'
-import { Home } from 'home'
-import { Page1 } from './pages/page1'
-import { Page2 } from './pages/page2'
-import { Page3 } from './pages/page3'
-import { Layout } from './layout'
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { Home } from "home";
+import { Page1 } from "./pages/page1";
+import { Page2 } from "./pages/page2";
+import { Page3 } from "./pages/page3";
+import { Layout } from "./layout";
 
 function App() {
-
   return (
     <Router>
       <Routes>
-        <Route element={ <Layout/> }>
-          <Route path="/" element={<Home/>} />
-          <Route path="/page1" element={<Page1/>} />
-          <Route path="/page2" element={<Page2/>} />
-          <Route path="/page3" element={<Page3/>} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/page1" element={<Page1 />} />
+          <Route path="/page2" element={<Page2 />} />
+          <Route path="/page3" element={<Page3 />} />
         </Route>
       </Routes>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
 ```
 
 ---

@@ -4,9 +4,9 @@
 
 # About FastAPI
 
-- **FastAPI** is modern python web framework, very efficient in building API's. It is based on Python's type hints feature. It is one of the fasted web frameworks on python.
+- **FastAPI** is modern python web framework, very efficient in building API's. It is based on Python's type hints feature. It is one of the fastest web frameworks on python.
 
-  - As it works on the funtionality of starlette and pydentic libraries, its performance is amoungst the best and on par with that of NodeJS and Go.
+  - As it works on the functionality of starlette and pydantic libraries, its performance is amongst the best and on par with that of NodeJS and Go.
   - In addition to offering high performance, FastAPI offers significant speed for development, reduces human-induced errors in the code, is easy to learn and is completely production-ready.
   - FastAPI is fully compatible with well-known standards of APIs, namely **OPENAPI** and **JSON** schema.
 
@@ -15,7 +15,7 @@
   - `fastapi` : FastAPI lib
   - `uvicorn/uvicorn[standard]` : (Asynchronous Server Gateway Interface) Server lib
   - `typing` [built-in] : Contains built-in Data Structures [List, Set, Tuple, Dict]
-  - `pydentic` [built-in] : Contains BaseModel [acts as base class for creating user defined models].
+  - `pydantic` [built-in] : Contains BaseModel [acts as base class for creating user defined models].
   - `python-multipart` : To access Form.
   - `aiofiles` : Used for handle static files
   - `jinja2` : Used for templates
@@ -27,7 +27,7 @@
 
 ---
 
-# Getting Start with FastAPI
+# Getting Started with FastAPI
 
 - Check OpenAPI docs,
 - Enter url as `http://localhost:8000/docs`.
@@ -135,7 +135,7 @@ async def uploaded(file:UploadFile=File(...)):
         with open("static/file.png", "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
         return HTMLResponse("""
-                            <h1>File Uploaded Sucessfully</h1>
+                            <h1>File Uploaded Successfully</h1>
                             """)
     else :
         return HTMLResponse("""
@@ -164,8 +164,8 @@ app = FastAPI()
 @app.post("/cookie/")
 async def create_cookie():
     content = {"message" : "cookie set"}
-    response = JSONReponse(content=content)
-    respnonse.set_cookie(key="username", value="admin")
+    response = JSONResponse(content=content)
+    response.set_cookie(key="username", value="admin")
     return response
 
 @app.get("/readcookie/")
@@ -176,7 +176,7 @@ async def read_cookie(username: str = Cookie(None)):
 
 ### . Header Parameters
 
-- In order to read the values of an **HTTP header** that is a part of the client request, import the Header object from the FastAPI library, and declare a paramter of Header type in the operattion function definition. The name of the paramter should match with the HTTP header converted in `camel_case`.
+- In order to read the values of an **HTTP header** that is a part of the client request, import the Header object from the FastAPI library, and declare a parameter of Header type in the operation function definition. The name of the parameter should match with the HTTP header converted in `camel_case`.
 - Eg.
 
 ```python
@@ -211,7 +211,7 @@ def set_rsp_headers():
 - An operation function return A JSON response to the client.
 - The response can be in the from of Python primary types, i.e, **numbers**, **string**, **list** or **dict**, etc.
 - It can also be form of **Pydantic model**.
-- For a function to return a model object, the operation decorator should decalre a `response_model` paramter.
+- For a function to return a model object, the operation decorator should declare a `response_model` parameter.
 - Eg.
 
 ```python
@@ -231,8 +231,8 @@ class Percent(BaseModel):
     name : str = Field(None, name="Student Name", max_length=20)
     per_marks = float
 
-@app.post("/marks/", response_model=percent)
-async def get_percent(s1.Student):
+@app.post("/marks/", response_model=Percent)
+async def get_percent(s1: Student):
     s1.per_marks = sum(s1.marks)/2
     return s1
 ```
@@ -286,7 +286,7 @@ app = FastAPI()
 ########## Dependency function
 
 async def dependency(id: str, name:str, age:int):
-    return {"id" : id, "name" name, "age" : age}
+    return {"id" : id, "name" : name, "age" : age}
 
 @app.get("/user")
 async def user(dep : dict = Depends(dependency)):
@@ -324,9 +324,9 @@ async def admin(dep: Dependency = Depends(Dependency)):
 ```python
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-app = FastAPI
+app = FastAPI()
 
-origins = ["http://localhost", "http://locahost:8080",]
+origins = ["http://localhost", "http://localhost:8080",]
 app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
 @app.get("/")
@@ -334,4 +334,4 @@ async def main():
     return {"message" : "Hello World"}
 ```
 
---- 
+---

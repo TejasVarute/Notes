@@ -7,10 +7,10 @@
 - The GET method requests a representation of the specified resource. Requests using GET should only retrieve data.
 - The HEAD method ask for a response identical to that of the GET request, but without the response body.
 - The POST method is used to submit an entity to the specified resource, often causing a change in state or side effect on the server.
-- The PUT method repalces all current representations of the target resource with the request payload.
+- The PUT method replaces all current representations of the target resource with the request payload.
 - The DELETE method deletes the specified resource.
-- The CONNECT method established a tunnel to the server identified by the target resource.
-- The OPTIONS method is used to describe the communication options for the target resouce.
+- The CONNECT method establishes a tunnel to the server identified by the target resource.
+- The OPTIONS method is used to describe the communication options for the target resource.
 - The TRACE method performs a message loop-back test along the path to the target resource.
 - The PATCH method is used to apply partial modifications to a resource.
 
@@ -21,42 +21,41 @@
 1. Information responses - (100 - 199)
 2. Successful responses - (200 - 299)
 3. Redirects (300 - 399)
-4. Client errors (400 -499)
-5. Server errors (500 -599)
+4. Client errors (400 - 499)
+5. Server errors (500 - 599)
 
 ---
 
 ## API (Application Program Interface) -
 
-- - Provider: The compony or developer who provide the API
-  - Comsumer: The compony or person who use the API
+- - Provider: The company or developer who provides the API
+  - Consumer: The company or person who uses the API
 
     ### Types of API -
 
-
     - Private : It can be used within organization.
     - Partner : It can be used within business and business partners.
-    - Public : It can be used any third party developers.
+    - Public : It can be used by any third party developers.
 
     ### API Key -
 
-    - While Register/sign up with API, it provides Unique key as API key.
+    - While Registering/signing up with API, it provides a Unique key as an API key.
     - This key is used while communicating, API shares the API key for validation.
 
     ### How API works -
 
-    - Client device make requests to API.
+    - Client device makes requests to API.
     - API will communicate with Application/Database.
     - Application/Database provides required data to API.
-    - API return the requests to Client.
+    - API returns the requests to Client.
 
 ---
 
 ## REST API -
 
 - It stands for Representational State Transfer.
-- It is an architecheral design for develop web API.
-- The API which developed using **REST** is known as **REST API/RESTful API**.
+- It is an architectural design for developing web APIs.
+- The API which is developed using **REST** is known as **REST API/RESTful API**.
 - REST API Crud operations:
 
   - POST : Create
@@ -71,19 +70,20 @@
 - Django REST Framework is a powerful and flexible toolkit for building web APIs.
 
   - The web browsable API is a huge usability win for your developers.
-  - Authentication policies including packages for OAuth1 and OAuth2.
+  - Authentication policies includes packages for OAuth1 and OAuth2.
   - Serialization that supports ORM and non-ORM data sources.
   - Customizable all the way down - just use regular function-based views if you don't need the more powerful features.
   - Extensive documentation and great community support.
-  - Used and trusted by internationally recognized componies including Mozilla, Red Hat, Heroku and Eventbrite.
+  - Used and trusted by internationally recognized companies including Mozilla, Red Hat, Heroku and Eventbrite.
+
 - Packages:
 
-  - ***djangorestframework*** - REST Framework libraries.
-  - ***pyYAML***, ***uritemplate*** - Schema generation support.
-  - ***Markdown*** - Markdown support for browsable API.
-  - ***pygments*** - Add syntax highlighting to Markdown processing.
-  - ***django-filter*** - Filtering support.
-  - ***django-guardian*** - Object level permissions support.
+  - **_djangorestframework_** - REST Framework libraries.
+  - **_pyYAML_**, **_uritemplate_** - Schema generation support.
+  - **_Markdown_** - Markdown support for browsable API.
+  - **_pygments_** - Add syntax highlighting to Markdown processing.
+  - **_django-filter_** - Filtering support.
+  - **_django-guardian_** - Object level permissions support.
 
 ## Django ORM (Object-Relational-Mapper)
 
@@ -100,6 +100,7 @@
         Department VARCHAR(20) NOT NULL,
         Joining_Date DATETIME NOT NULL);
     ```
+
   - Django ORM:
 
     ```python
@@ -124,14 +125,14 @@
 
 ### 2. Serializers -
 
-- Serializers are responsible for converting complex data such querysets and model instance to native Python datatypes (called serialization) that can then easily rendered into JSON or XML or other context types which understandable by Front end.
-- It also provide Deserialization.
+- Serializers are responsible for converting complex data such as querysets and model instances to native Python data types (called serialization) that can then be easily rendered into JSON or XML or other context types which are understandable by Front end.
+- It also provides Deserialization.
 - `Serialization` - `Complex DataType` (querysets) to `Python native DataType` (dictionary).
 - `Render into JSON` - `Python native DataType` (dictionary) to `JSON Data`.
 - **Serializer class**: It gives a powerful, generic way to control the output of your responses, as well as a ModelSerializer class which provides a useful shortcut for creating serializers that deal with model instances and querysets.
 - Steps to create serializer class
 
-  - Create a separate `seriealizers.py` file to write all serializers
+  - Create a separate `serializers.py` file to write all serializers
   - import serializers from rest_framework `from rest_framework import serializers`
   - create class inherited with serializer.
     ```python
@@ -140,6 +141,7 @@
        roll = serializers.IntegerField()
        city = serializers.CharField(max_length = 20)
     ```
+
 - Serialization:
 
   - For single tuple:
@@ -149,10 +151,12 @@
     - Query set instance : `obj = Dataset.objects.all()`
     - Converting into Dict : `serializer = _Serializer(obj, many=True)`
   - Get serialized data: `print(serializer.data)`
+
 - JSON Renderer:
 
-  - importing JSONRender : `from rest_framework.renderers import JSONRenderer`
-  - Render the Data into Json : `json_data = JSONRenderer().render(serializer.data)`
+  - importing JSONRenderer : `from rest_framework.renderers import JSONRenderer`
+  - Render the Data into JSON : `json_data = JSONRenderer().render(serializer.data)`
+
 - JSON Response:
 
   - Syntax : `JsonResponse(data, encoder=DjangoJSONEncoder, safe=True, json_dumps_params=None, **kwargs)`

@@ -6,7 +6,7 @@
 - Its free and open source
 - Model : Structure and manipulating the data of web application
 - View : Encapsulate the logic responsible for processing a user's request and for returning the response.
-- Template : Provides designer friendly syntax for rendring the information to be presented to the user.
+- Template : Provides designer friendly syntax for rendering the information to be presented to the user.
 
 ## Steps to install Django
 
@@ -38,10 +38,10 @@
 
 ## GET and POST method
 
-- GET Method doesnot require CSFR token.
-- GET Method mentions all the attribute in url box with assigned value.
-- POST Method requires CSFR token.
-- POST Method do not show attributes in url box.
+- GET Method does not require CSRF token.
+- GET Method shows all the attribute in url box with assigned value.
+- POST Method requires CSRF token.
+- POST Method does not show attributes in url box.
 
 ---
 
@@ -109,7 +109,7 @@
    from django.db import models
 
    class Database(models.Model):
-       char = models.ChartField()
+       char = models.CharField()
        text = models.TextField()
        date = models.DateField()
        time = models.TimeField()
@@ -146,7 +146,7 @@
       path('error', views.page_not_found, name="404_handler")
   ]
   ```
-- Joint this file with `projects_dir\urls.py`
+- Link this file with `projects_dir\urls.py`
   ```python
   handler404 = 'APP.views.page_not_found'
   ```
