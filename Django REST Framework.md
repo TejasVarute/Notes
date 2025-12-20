@@ -165,5 +165,72 @@
 ### 3. Viewsets -
 
 - Django REST Framework allows you to combine the logic for a set of related views in a single class, called Viewsets.
+- **ModelViewSet**:
+  - Validates and performs generic database operations (Create, Retrieve, Update, Delete) automatically.
+  - It provides default implementations for `list()`, `retrieve()`, `create()`, `update()`, `partial_update()`, and `destroy()`.
+
+```python
+from rest_framework import viewsets
+from .models import MyModel
+from .serializers import MyModelSerializer
+
+class MyModelViewSet(viewsets.ModelViewSet):
+    queryset = MyModel.objects.all()
+    serializer_class = MyModelSerializer
+```
+
+---
+
+## Routers
+
+- Routers automatically generate URLs for ViewSets.
+- **DefaultRouter** creates the standard set of API operations.
+
+```python
+from rest_framework.routers import DefaultRouter
+from .views import MyModelViewSet
+
+router = DefaultRouter()
+router.register('mymodel', MyModelViewSet, basename='mymodel')
+
+urlpatterns = router.urls
+```
+
+---
+
+## Authentication & Permissions
+
+- **Authentication**: Determines the identity of the user.
+  - `TokenAuthentication`: Uses a simple token-based HTTP Authentication scheme.
+  - `SessionAuthentication`: Uses Django's default session support.
+- **Permissions**: Determines if the user has privileges to perform the action.
+  - `IsAuthenticated`: Allows access only to authenticated users.
+  - `IsAdminUser`: Allows access only to admin users.
+
+```python
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
+
+class MyModelViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+```
+
+---
+
+## Generic Views
+
+- Pre-built views for common patterns if you don't want to use ViewSets.
+- `ListAPIView`: Used for read-only endpoints to represent a collection of model instances.
+- `RetrieveAPIView`: Used for read-only endpoints to represent a single model instance.
+- `CreateAPIView`: Used for create-only endpoints.
+
+```python
+from rest_framework import generics
+
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+```
 
 ---

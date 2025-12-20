@@ -335,3 +335,56 @@ async def main():
 ```
 
 ---
+
+## Parameters & Validation
+
+- **Query Parameters**: Key-value pairs in the URL after `?`.
+- **Path Parameters**: Variadic parts of the URL path declared with `{}`.
+- **Body Parameters**: Data sent in the body of the request (JSON).
+
+```python
+from fastapi import FastAPI, Path, Query, Body
+
+@app.get("/items/{item_id}")
+async def read_items(
+    item_id: int = Path(..., title="The ID of the item to get"),
+    q: str | None = Query(None, max_length=50),
+    data: dict = Body(...)
+):
+    return {"item_id": item_id, "q": q, "data": data}
+```
+
+---
+
+## Error Handling
+
+- Raise `HTTPException` to return error responses to the client.
+
+```python
+from fastapi import HTTPException
+
+@app.get("/items/{item_id}")
+async def read_item(item_id: int):
+    if item_id == 0:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return {"item_id": item_id}
+```
+
+---
+
+## Testing
+
+- FastAPI provides a `TestClient` to test your application. It uses `httpx`.
+
+```python
+from fastapi.testclient import TestClient
+
+client = TestClient(app)
+
+def test_read_main():
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.json() == {"message": "Hello World"}
+```
+
+---

@@ -34,3 +34,31 @@
 ```shell
 ([environment-name]) >
 ```
+
+## Deactivate Virtual Environment
+
+- To exit the virtual environment, simply run:
+
+```shell
+> deactivate
+```
+
+---
+
+## Managing Dependencies
+
+- **Exporting dependencies**
+  - To save the list of installed packages to a file (usually `requirements.txt`).
+
+```shell
+> pip freeze > requirements.txt
+```
+
+- **Installing dependencies**
+  - To install packages from a `requirements.txt` file.
+
+```shell
+> pip install -r requirements.txt
+```
+
+---

@@ -1068,3 +1068,126 @@ export default App;
 ```
 
 ---
+
+### 12. More Hooks
+
+#### 1. `useCallback`
+
+- `useCallback` returns a memoized version of the callback function that only changes if one of the dependencies has changed.
+- Useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders.
+
+```js
+import { useCallback, useState } from "react";
+
+function Parent() {
+  const [count, setCount] = useState(0);
+
+  const handleClick = useCallback(() => {
+    console.log("Clicked");
+  }, []); // Dependency array
+
+  return <Child onClick={handleClick} />;
+}
+```
+
+#### 2. `useReducer`
+
+- An alternative to `useState` for managing complex state logic.
+
+```js
+import { useReducer } from "react";
+
+const initialState = { count: 0 };
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "increment":
+      return { count: state.count + 1 };
+    case "decrement":
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
+}
+
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({ type: "decrement" })}>-</button>
+      <button onClick={() => dispatch({ type: "increment" })}>+</button>
+    </>
+  );
+}
+```
+
+---
+
+### 13. Advanced Routing
+
+- **`useNavigate` Hook**
+  - Used to programmatically navigate to different routes.
+
+```js
+import { useNavigate } from "react-router-dom";
+
+function Login() {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    // ... login logic
+    navigate("/dashboard");
+  };
+
+  return <button onClick={handleLogin}>Login</button>;
+}
+```
+
+---
+
+### 14. API Integration
+
+- **Using Fetch**
+
+```js
+import { useState, useEffect } from "react";
+
+function DataFetcher() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch("https://api.example.com/data")
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => console.error(error));
+  }, []);
+
+  if (!data) return <div>Loading...</div>;
+  return <div>{JSON.stringify(data)}</div>;
+}
+```
+
+- **Using Axios**
+  - First install: `npm install axios`
+
+```js
+import axios from "axios";
+import { useState, useEffect } from "react";
+
+function AxiosFetcher() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("https://api.example.com/data")
+      .then((response) => setData(response.data))
+      .catch((error) => console.error(error));
+  }, []);
+
+  if (!data) return <div>Loading...</div>;
+  return <div>{JSON.stringify(data)}</div>;
+}
+```
+
+---

@@ -203,3 +203,34 @@
 ```shell
 > git tag [tag-name]
 ```
+
+---
+
+## 8. Ignoring Files (.gitignore)
+
+- A `.gitignore` file specifies intentionally untracked files that Git should ignore.
+- **Common usage**:
+  - `__pycache__/`
+  - `.env`
+  - `node_modules/`
+  - `*.log`
+
+---
+
+## 9. Undo Changes (Modern)
+
+- **Restore working tree files**:
+  - Discard changes in working directory (like `git checkout -- file`).
+
+```shell
+> git restore [file]
+```
+
+- **Unstage files**:
+  - Remove files from staging area (like `git reset HEAD file`).
+
+```shell
+> git restore --staged [file]
+```
+
+---

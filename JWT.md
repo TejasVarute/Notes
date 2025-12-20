@@ -83,3 +83,19 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 ```
 
 ---
+
+## Common Authentication Flow
+
+1.  **Login**: User sends `username` and `password` to the server.
+2.  **Validation**: Server verifies credentials against the database.
+3.  **Token Creation**: If valid, server creates a JWT with specific claims (user ID, expiration) and signs it.
+4.  **Response**: Server sends the **Access Token** (and optionally a **Refresh Token**) to the client.
+5.  **Storage**: Client stores the token (usually in `localStorage`, `sessionStorage`, or `HttpOnly Cookie`).
+6.  **Protected Request**: For subsequent requests to protected routes, client sends the token in the `Authorization` header.
+    - `Authorization: Bearer <token>`
+7.  **Verification**: Server verifies the token signature and expiration.
+    - If valid: Grants access.
+    - If invalid/expired: Returns `401 Unauthorized`.
+8.  **Refresh Flow**: If access token expires, client uses the refresh token to request a new access token without re-login.
+
+---

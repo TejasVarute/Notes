@@ -153,3 +153,95 @@
 - Restart the server
 
 ---
+
+## Class Based Views (CBV)
+
+- Django provides class-based views as an alternative to function-based views (FBVs). They are reusable and object-oriented.
+- Common generic views:
+  - `TemplateView`: Renders a template.
+  - `ListView`: Display a list of objects.
+  - `DetailView`: Display a detail of a single object.
+  - `CreateView`: A view that displays a form for creating an object.
+  - `UpdateView`: A view that displays a form for updating an existing object.
+  - `DeleteView`: A view that displays a confirmation page and deletes an existing object.
+
+```python
+from django.views.generic import ListView, DetailView
+from .models import MyModel
+
+class MyModelList(ListView):
+    model = MyModel
+    template_name = 'mymodel_list.html'
+    context_object_name = 'objects'
+
+class MyModelDetail(DetailView):
+    model = MyModel
+    template_name = 'mymodel_detail.html'
+```
+
+---
+
+## Middleware
+
+- Middleware is a framework of hooks into Django's request/response processing. It's a light, low-level "plugin" system for globally altering input or output.
+- Each middleware component is responsible for doing some specific function.
+- **Custom Middleware Example**:
+
+```python
+class SimpleMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        # Code to be executed for each request before
+        # the view (and later middleware) are called.
+        print("Before View")
+
+        response = self.get_response(request)
+
+        # Code to be executed for each request/response after
+        # the view is called.
+        print("After View")
+
+        return response
+```
+
+---
+
+## Signals
+
+- Django includes a "signal dispatcher" which allows decoupled applications to get notified when actions occur elsewhere in the framework.
+- Common signals: `pre_save`, `post_save`, `pre_delete`, `post_delete`.
+- **Example: Create a Profile when a User is created**
+
+```python
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import User
+from .models import Profile
+
+@receiver(post_save, sender=User)
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+```
+
+---
+
+## Admin Panel Customization
+
+- You can customize how models are displayed in the administrative interface.
+- **Example**:
+
+```python
+from django.contrib import admin
+from .models import MyModel
+
+@admin.register(MyModel)
+class MyModelAdmin(admin.ModelAdmin):
+    list_display = ('name', 'created_at', 'is_active')
+    search_fields = ('name', 'description')
+    list_filter = ('is_active',)
+```
+
+---
